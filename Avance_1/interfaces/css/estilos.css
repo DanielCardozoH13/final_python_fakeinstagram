@@ -62,3 +62,16 @@ nav ul i {
 .comentarios_pub {
   padding-top: 3px !important;
 }
+
+.perfil_usuario {
+  margin-top: 72px;
+}
+.perfil_foto {
+  width: 150px !important;
+  border-radius: 75px !important;
+}
+.perfil_detalles {
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 100px;
+}
