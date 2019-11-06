@@ -45,3 +45,20 @@ nav ul i {
   position: absolute;
   margin: 7px;
 }
+
+.card_content_title {
+  padding-bottom: 9px !important;
+}
+
+.icons_pub {
+  margin-right: 5px;
+}
+
+.opciones_pub {
+  padding-top: 15px !important;
+  padding-bottom: 3px !important;
+}
+
+.comentarios_pub {
+  padding-top: 3px !important;
+}
