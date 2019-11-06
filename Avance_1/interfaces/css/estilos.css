@@ -75,3 +75,16 @@ nav ul i {
   margin-top: 65px;
   margin-left: 100px;
 }
+
+.elementos_perfil {
+  margin-left: 25px;
+}
+
+.galeria {
+  margin-top: 50px;
+}
+
+.materialboxed {
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+}
