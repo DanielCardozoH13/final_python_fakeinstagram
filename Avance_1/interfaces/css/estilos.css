@@ -38,11 +38,10 @@ nav ul i {
 .foto_perfil_pub {
   font-size: 50px !important;
   margin-left: -9px !important;
-  margin-top: 25px !important;
+  margin-top: -10px !important;
 }
 
 .nombre_perfil_pub {
-  font-size: 18px !important;
-  margin-bottom: -5px !important;
-  margin-top: -25px !important;
+  position: absolute;
+  margin: 7px;
 }
