@@ -1,0 +1,48 @@
+nav .logo {
+  position: absolute;
+  color: black;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+}
+
+nav ul a {
+  color: black !important;
+}
+
+nav ul i {
+  color: black !important;
+  margin: 0 15px;
+  font-size: 30px !important;
+}
+
+.brand {
+  width: 27px;
+  margin: 18px;
+}
+
+.brand_separador {
+  background-color: rgba(var(--i1d,38,38,38),1);
+  height: 28px;
+  margin: 0 16px;
+  -webkit-transition: opacity .1s ease-out;
+  transition: opacity .1s ease-out;
+  width: 1px;
+  margin-bottom: 16px;
+}
+
+.brand_text {
+  margin: 13px;
+}
+
+.foto_perfil_pub {
+  font-size: 50px !important;
+  margin-left: -9px !important;
+  margin-top: 25px !important;
+}
+
+.nombre_perfil_pub {
+  font-size: 18px !important;
+  margin-bottom: -5px !important;
+  margin-top: -25px !important;
+}
