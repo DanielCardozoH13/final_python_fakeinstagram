@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     #Apps Nuevas
     'noticias',
+    'perfiles',
 ]
 
 MIDDLEWARE = [
