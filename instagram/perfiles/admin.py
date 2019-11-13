@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from perfiles.models import *
 # Register your models here.
-	
+
 @admin.register(Perfile)
 class PerfilesAdmin(admin.ModelAdmin):
 	list_display = ('pk', 'sitio_web', 'sexo')
