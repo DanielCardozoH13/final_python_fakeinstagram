@@ -14,6 +14,8 @@ class Perfile(models.Model):
 		blank=True,
 		null=True,
 		)
+	seguidores = models.ManyToManyField('self', through='Seguidor',
+                                      symmetrical=False)
 
 
 class Foto(models.Model):
@@ -39,9 +41,8 @@ class Like(models.Model):
 	foto_id = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
-"""
+
 class Seguidor(models.Model):
-	user_id = models.ForeignKey(Perfile, on_delete=models.CASCADE, blank=True, null=True)
-	followed_user_id = models.ManyToManyField(Perfile)
+	user_id = models.ForeignKey(Perfile, on_delete=models.CASCADE, related_name='Seguido')
+	followed_user_id = models.ForeignKey(Perfile, on_delete=models.CASCADE, related_name='Seguidor')
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-"""
