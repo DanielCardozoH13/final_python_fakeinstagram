@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def login_view(request):
@@ -13,3 +15,7 @@ def login_view(request):
 		else:
 			return render(request, 'perfiles/login.html', {'error' : 'Credenciales invalidas'})
 	return render(request, 'perfiles/login.html')
+
+@login_required
+def perfil_view(request):
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'publicaciones':publicaciones})
