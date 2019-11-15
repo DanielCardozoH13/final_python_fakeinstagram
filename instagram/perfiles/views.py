@@ -18,4 +18,4 @@ def login_view(request):
 
 @login_required
 def perfil_view(request):
-	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'publicaciones':publicaciones})
+	return render(request, 'perfiles/perfil.html')
