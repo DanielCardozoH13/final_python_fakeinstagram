@@ -7,10 +7,10 @@ from noticias.models import Noticia
 
 @admin.register(Noticia)
 class NoticiasAdmin(admin.ModelAdmin):
-	list_display = ('pk', 'titulo', 'descripcion', 'fecha')
+	list_display = ('pk', 'perfil', 'titulo', 'descripcion', 'fecha', 'created', 'foto')
 	list_display_links = ('pk',)
-	list_editable = ('titulo',)
+	list_editable = ('titulo', 'foto')
 
-	search_fields = ('titulo', 'fecha')
+	search_fields = ('titulo', 'created')
 
 	list_filter = ('created', 'modified', 'fecha')

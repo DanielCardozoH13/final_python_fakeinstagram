@@ -10,14 +10,14 @@
 			<div id="publicacion" class="card">
 
 				<div class="card-content card_content_title grey-text text-darken-4">
-					<img class="foto_perfil_pub" src="{{ noticia.usuario.foto }}">
-					<span class="nombre_perfil_pub"><strong>{{ noticia.usuario.nombre }}</strong></span>
-					<span class="fecha_perfil_pub">{{ noticia.timestamp }}</span>
-					<i class="activator material-icons right">more_vert</i></span>
+					<img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}">
+					<span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span>
+					<span class="fecha_perfil_pub">{{ noticia.created }}</span>
+					<i class="activator material-icons right">more_vert</i>
 				</div>
 
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{ noticia.imagen }}">
+					<img class="activator" src="{{ noticia.foto.url }}">
 				</div>
 
 				<div class="card-content opciones_pub">
@@ -28,12 +28,12 @@
 				</div>
 				<div class="card-content comentarios_pub">
 					<span class="activator grey-text text-darken-4">
-						<strong>{{ noticia.usuario.nombre }}</strong>
+						<strong>{{ noticia.user }}</strong>
 						{{ noticia.titulo }}
 					</span>
 				</div>
 				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">{{ noticia.usuario.nombre }}<i class="material-icons right">close</i></span>
+					<span class="card-title grey-text text-darken-4">{{ noticia.user }}<i class="material-icons right">close</i></span>
 					<p>{{ noticia.titulo }}</p>
 					<p>COMENTARIOS</p>
 				</div>

@@ -9,11 +9,14 @@ def login_view(request):
 		username = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
-		if user:
+		if user is not None:
 			login(request, user)
 			return redirect('noticias')
 		else:
 			return render(request, 'perfiles/login.html', {'error' : 'Credenciales invalidas'})
+	return render(request, 'perfiles/login.html')
+
+def logout_view(request):
 	return render(request, 'perfiles/login.html')
 
 @login_required
