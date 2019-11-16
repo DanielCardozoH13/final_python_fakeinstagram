@@ -17,16 +17,12 @@
 				{% endif%}
 				<form action="{% url "login" %}" method="POST">
 					{% csrf_token %}
-					<div class="input">
-						<input class="form-control" type="text" name="username" placeholder="Username">
-					</div>
-					<div class="input">
-						<input class="form-control" type="password" name="password" placeholder="Password">
-					</div>
+					{{form.as_p}}
 					<div class="center btn_login">
 						<button class="btn grey darken-4" type="submit">Iniciar Sesión</button>
 					</div>
 				</form>
+				<a href="{% url 'logup' %}">Registrarse</a>
 			</div>
 		</div>
 	</div>

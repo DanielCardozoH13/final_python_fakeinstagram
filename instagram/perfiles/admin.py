@@ -9,10 +9,6 @@ class PerfilesAdmin(admin.ModelAdmin):
 	list_display_links = ('pk',)
 	list_editable = ('sitio_web', 'foto_perfil')
 
-	#search_fields = ('titulo', 'fecha')
-
-	#list_filter = ('created', 'modified', 'fecha')
-
 @admin.register(Foto)
 class FotosAdmin(admin.ModelAdmin):
 	list_display = ('pk', 'foto', 'descripcion')
