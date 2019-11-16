@@ -1,0 +1,122 @@
+nav .logo {
+  position: absolute;
+  color: black;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+}
+
+nav ul a {
+  color: black !important;
+}
+
+nav ul i {
+  color: black !important;
+  margin: 0 15px;
+  font-size: 30px !important;
+}
+
+.brand {
+  width: 27px;
+  margin: 18px;
+}
+
+.brand_separador {
+  background-color: rgba(var(--i1d,38,38,38),1);
+  height: 28px;
+  margin: 0 16px;
+  -webkit-transition: opacity .1s ease-out;
+  transition: opacity .1s ease-out;
+  width: 1px;
+  margin-bottom: 16px;
+}
+
+.brand_text {
+  margin: 13px;
+}
+
+.foto_perfil_pub {
+  width: 50px !important;
+  margin-left: -9px !important;
+  margin-top: -10px !important;
+  border-radius: 500px;
+}
+
+.nombre_perfil_pub {
+  position: absolute;
+  margin: 7px;
+  margin-top: -4px !important;
+}
+
+.fecha_perfil_pub {
+  position: absolute;
+  margin: 7px;
+  margin-top: 14px !important;
+  font-size: 11px !important;
+}
+
+.card_content_title {
+  padding-bottom: 9px !important;
+}
+
+.icons_pub {
+  margin-right: 5px;
+}
+
+.opciones_pub {
+  padding-top: 15px !important;
+  padding-bottom: 3px !important;
+}
+
+.comentarios_pub {
+  padding-top: 3px !important;
+}
+
+.perfil_usuario {
+  margin-top: 72px;
+}
+.perfil_foto {
+  width: 150px !important;
+  border-radius: 75px !important;
+}
+.perfil_detalles {
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 100px;
+}
+
+.elementos_perfil {
+  margin-left: 25px;
+}
+
+.galeria {
+  margin-top: 50px;
+}
+
+.materialboxed {
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+}
+
+.login_card {
+  margin-top: 175px;
+}
+
+.btn_login {
+  margin: 30px !important;
+}
+
+.body_login {
+  background-color: lightgrey;
+}
+
+.brand_login {
+  width: 100px;
+  margin: 18px;
+}
+
+.error_msg {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+  padding: 13px;
+}
