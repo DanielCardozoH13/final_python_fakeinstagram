@@ -8,16 +8,14 @@ from django.contrib.auth.models import User
 
 
 
-#perfil = Perfil.objects.all().select_related('user')
-perfil = Perfil.objects.get(id=1)
-#print(perfil)
+
 def logout_view(request):
 	return render(request, 'perfiles/login.html')
 
 @login_required
 def perfil_view(request):
 	user = User.objects.get(username=request.user)
-	print("\n\n\n\n"+str(user.email))
+	perfil = Perfil.objects.filter(id=user.id)
 	return render(request, 'perfiles/perfil.html', {'perfil':perfil})
 
 def logup_view(request):
