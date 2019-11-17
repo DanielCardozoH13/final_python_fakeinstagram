@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block head_content %}
 	<title>Perfil</title>
@@ -15,7 +16,7 @@
           <span class="perfil_detalles grey-text text-darken-4">
             <h5>
               Nombre Usuario
-              <i href='#' class="activator material-icons right">settings</i></span>
+              <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
             </h5>
 
             <p>
