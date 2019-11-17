@@ -9,7 +9,12 @@
     <div class="col s12 m8 offset-m2">
       <div id="perfil" class="">
         <div id="perfil_foto" class="perfil_usuario col s2">
-          <img class="perfil_foto" src="{{ perfil.foto_perfil.url }}">
+					{% if perfil.foto_perfil.url %}
+						<img class="perfil_foto" src="{{ perfil.foto_perfil.url }}">
+		      {% else %}
+						<img class="perfil_foto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_Bf0-x44hsGqqcQwrTcNeLUSnYjlDuoql-hQHydDdBwxeCT2">
+		      {% endif %}
+
         </div>
         <div class="col s8">
           <span class="perfil_detalles grey-text text-darken-4">
