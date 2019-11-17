@@ -55,7 +55,7 @@ def update_profile(request):
 		template_name = 'perfiles/update_profile.html',
 		context = {
 			'perfil': perfil,
-			'user':	request.user,
+			'user':	user,
 			'form' : form
 			}
 		)
