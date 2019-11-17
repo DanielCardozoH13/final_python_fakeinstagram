@@ -20,7 +20,7 @@
         <div class="col s8">
           <span class="perfil_detalles grey-text text-darken-4">
             <h5>
-              Nombre Usuario
+              @{{ request.user.username }}
               <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
             </h5>
 
@@ -31,10 +31,10 @@
             </p>
 
             <p>
-            <strong>Nombre</strong>
+            <strong>@{{ request.user.username }} </strong>
             </p>
             <p>
-            bibliografia del usuario
+            {{ perfil.biografia }}
             </p>
 
           </span>

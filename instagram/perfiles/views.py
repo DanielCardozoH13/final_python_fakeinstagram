@@ -45,7 +45,7 @@ def update_profile(request):
 			perfil.foto_perfil = data['foto_perfil']
 			perfil.save()
 
-			return redirect('update_profile')
+			return redirect(request, 'perfiles/perfil.html', {'perfil':perfil})
 
 	else:
 		form = PerfilForm()
