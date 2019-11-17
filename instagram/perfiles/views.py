@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
+from django.contrib.auth.models import User
 from perfiles.models import Perfil
+from perfiles.forms import PerfilForm
+
 
 def logout_view(request):
 	return render(request, 'perfiles/login.html')
@@ -29,18 +31,19 @@ def logup_view(request):
 
 @login_required
 def update_profile(request):
-	profile = request.user.perfil
+	user = User.objects.get(username=request.user)
+	perfil = Perfil.objects.filter(user=user.id)
 
 	if request.method == 'POST':
 		form = PerfilForm(request.POST, request.FILES)
 		if form.is_valid():
 			data = form.cleaned_data
-			profile.biografia = data['biografia']
-			profile.sitio_web = data['sitio_web']
-			profile.sexo = data['sexo']
-			profile.telefono = data['telefono']
-			profile.foto_perfil = data['foto_perfil']
-			profile.save()
+			perfil.biografia = data['biografia']
+			perfil.sitio_web = data['sitio_web']
+			perfil.sexo = data['sexo']
+			perfil.telefono = data['telefono']
+			perfil.foto_perfil = data['foto_perfil']
+			perfil.save()
 
 			return redirect('update_profile')
 
@@ -49,9 +52,9 @@ def update_profile(request):
 
 	return render(
 		request=request,
-		template_name = 'users/update_profile.html',
+		template_name = 'perfiles/update_profile.html',
 		context = {
-			'profile': profile,
+			'perfil': perfil,
 			'user':	request.user,
 			'form' : form
 			}
