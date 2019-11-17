@@ -11,7 +11,10 @@ def logout_view(request):
 
 @login_required
 def perfil_view(request):
-	return render(request, 'perfiles/perfil.html')
+	user = User.objects.get(username=request.user)
+	perfil = Perfil.objects.filter(user=user.id)
+	print(perfil)
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil})
 
 def logup_view(request):
 	if request.method == 'POST':

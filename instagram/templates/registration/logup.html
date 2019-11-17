@@ -17,15 +17,10 @@
 				{% endif%}
 				<form  method="POST">
 					{% csrf_token %}
-					{% for field in form %}
-						<div class="input">
-							<label for="{{field.id_for_label}}" class="label">{{ field.html_name}}</label>
-							{{ field }}
-						</div>
-					{% endfor %}
+					{{form.as_p}}
 					<div class="center btn_login">
-						<button class="btn grey darken-4" type="submit">Registrarse</button>
-					</div> 
+						<button class="btn grey darken-4" type="submit">Iniciar Sesión</button>
+					</div>
 				</form>
 				<a href="{% url 'login' %}">Iniciar Sesión</a>
 			</div>
