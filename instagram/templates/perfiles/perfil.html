@@ -9,7 +9,7 @@
     <div class="col s12 m8 offset-m2">
       <div id="perfil" class="">
         <div id="perfil_foto" class="perfil_usuario col s2">
-          <img class="perfil_foto" src="https://picsum.photos/500/500">
+          <img class="perfil_foto" src="{{ perfil.foto_perfil.url }}">
         </div>
         <div class="col s8">
           <span class="perfil_detalles grey-text text-darken-4">
@@ -41,7 +41,9 @@
 
   <div class="row galeria">
     <div class="col s12 m10 offset-m1">
-      <img class="col s12 m4 materialboxed" data-caption="A picture of a way with a group of trees in a park" src="https://picsum.photos/500/500">
+      {% for datos in perfil %}
+        <img class="col s12 m4 materialboxed" data-caption="A picture of a way with a group of trees in a park" src="https://picsum.photos/500/500">
+      {% endfor %}
       <!-- <img class="col s12 m4 materialboxed" data-caption="A picture of a way with a group of trees in a park" src="https://picsum.photos/500/500">
       <img class="col s12 m4 materialboxed" data-caption="A picture of a way with a group of trees in a park" src="https://picsum.photos/500/500">
       <img class="col s12 m4 materialboxed" data-caption="A picture of a way with a group of trees in a park" src="https://picsum.photos/500/500">
