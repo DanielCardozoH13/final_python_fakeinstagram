@@ -4,9 +4,8 @@ from django.contrib.auth.decorators import login_required
 from noticias.models import Noticia
 
 
-noticias = Noticia.objects.all()#.select_related("foto_id")
+noticias = Noticia.objects.all()
 
-# Create your views here.}
 @login_required
 def listar_noticias(request):
 	return render(request, 'noticias/noticias.html', {'noticias':noticias})
