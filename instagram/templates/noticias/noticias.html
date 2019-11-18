@@ -10,14 +10,14 @@
 			<div id="publicacion" class="card">
 
 				<div class="card-content card_content_title grey-text text-darken-4">
-					<img class="foto_perfil_pub" src="{{ noticia.perfil_id.foto_perfil.url }}">
+					<img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}">
 					<span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span>
-					<span class="fecha_perfil_pub">{{ noticia.foto_id.created }}</span>
+					<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
 					<i class="activator material-icons right">more_vert</i>
 				</div>
 
 				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{ noticia.foto_id.foto.url }}">
+					<img class="activator" src="{{ noticia.foto.foto.url }}">
 				</div>
 
 				<div class="card-content opciones_pub">
@@ -29,7 +29,7 @@
 				<div class="card-content comentarios_pub">
 					<span class="activator grey-text text-darken-4">
 						<strong>{{ noticia.user }}</strong>
-						{{ noticia.foto_id.titulo }}
+						{{ noticia.foto.titulo }}
 					</span>
 				</div>
 				<div class="card-reveal">

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 from perfiles.models import Perfil, Foto
+from noticias.models import Noticia
 from perfiles.forms import updatePerfilForm, SignupForm, addPostForm
 
 
@@ -20,8 +21,9 @@ def perfil_view(request):
 		foto_perfil = perfil[0].foto_perfil.url
 	else:
 		foto_perfil=""
+	fotos = Foto.objects.all().filter(perfil=perfil[0].id)
 
-	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil})
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos})
 
 def logup_view(request):
 	if request.method == 'POST':
@@ -85,6 +87,11 @@ def add_post(request):
 						foto=data['foto'],
 						)
 			foto.save(force_insert=True)
+			#foto = Foto.objects.get(perfil=perfil.id)
+			noticias = Noticia(user=user,
+								perfil=perfil,
+								foto=foto,)
+			noticias.save(force_insert=True)
 
 			return redirect('perfil')
 		else:
