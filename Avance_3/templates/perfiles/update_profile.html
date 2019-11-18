@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_content %}
+<title>@{{ request.user.username }}</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="container">
+
+  <div class="col s12 m8 offset-m2">
+		<div id="login" class="card login_card">
+			<div class="card-content card_content_title grey-text text-darken-4">
+
+				{% if error %}
+					<p class="error_msg">{{ error }}</p>
+				{% endif%}
+
+        <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="center">
+              {% if perfil.foto_perfil %}
+                <img src="{{ perfil.foto_perfil.url }}" class="perfil_foto" height="50" />
+              {% else %}
+                <img class="perfil_foto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_Bf0-x44hsGqqcQwrTcNeLUSnYjlDuoql-hQHydDdBwxeCT2" class="perfil_foto">
+              {% endif %}
+
+              <div class="media-body">
+                  <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
+              </div>
+          </div>
+          {{form.as_p}}
+          
+          <div class="center">
+            <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar</button>
+          </div>
+        </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -2,13 +2,14 @@
 <nav class="#fafafa grey lighten-5" role="navigation">
   <div class="nav-wrapper container">
 
-    <img class="brand" href="#" src="https://image.flaticon.com/icons/png/512/87/87390.png">
+    <a href="{% url 'noticias' %}"><img class="brand" src="https://image.flaticon.com/icons/png/512/87/87390.png"></a>
     <img class="brand_separador">
-    <img class="brand_text" href="#" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png">
+    <a href="{% url 'noticias' %}"><img class="brand_text" src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"></a>
 
     <ul class="right hide-on-med-and-down">
-      <li><a href="#" class="large material-icons">explore</a></li>
-      <li><a href="#" class="large material-icons">notifications_none</a></li>
+      <!-- <li><a href="#" class="large material-icons">explore</a></li>
+      <li><a href="#" class="large material-icons">notifications_none</a></li> -->
+      <li><a href="{% url 'add_post' %}" class="large material-icons">post_add</a></li>
       <li><a href="{% url 'perfil' %}" class="large material-icons">person_outline</a></li>
       <li><a href="{% url 'logout' %}" class="large material-icons">exit_to_app</a></li>
     </ul>
