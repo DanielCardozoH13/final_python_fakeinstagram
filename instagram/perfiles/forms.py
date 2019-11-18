@@ -68,3 +68,4 @@ class addPostForm(forms.Form):
 		    'foto',
 		    'descripcion',
 		)
+

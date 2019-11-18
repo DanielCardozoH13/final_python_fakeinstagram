@@ -21,7 +21,7 @@ def perfil_view(request):
 		foto_perfil = perfil[0].foto_perfil.url
 	else:
 		foto_perfil=""
-	fotos = Foto.objects.all().filter(perfil=perfil[0].id)
+	fotos = Foto.objects.all().filter(perfil=perfil[0].id).order_by('-created')
 
 	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos})
 
@@ -108,3 +108,16 @@ def add_post(request):
 			'form':form
 			}
 		)
+
+
+@login_required
+def edit_post(request):
+	template_name='perfiles/perfil.html'
+	user = User.objects.get(username=request.user)
+	perfil = Perfil.objects.get(user=user.id)
+
+	if request.method == 'POST':
+		Foto.objects.filter(id=request.POST['foto_id']).update(titulo=request.POST['titulo'],
+																descripcion=request.POST['descripcion'])
+
+	return redirect('perfil')
