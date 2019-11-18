@@ -36,8 +36,8 @@ class Perfil(models.Model):
 
 
 class Foto(models.Model):
-	perfil_id = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
-	titulo = models.TextField(max_length=1000, blank=False, null=True)
+	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
+	titulo = models.TextField(max_length=250, blank=False, null=True)
 	foto = models.ImageField(upload_to='perfiles/fotos',
 		blank=False,
 		null=False,

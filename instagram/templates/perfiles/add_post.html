@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_content %}
+<title>@{{ request.user.username }}</title>
+{% endblock %}
+
+{% block container %}
+
+<div class="container">
+
+  <div class="col s12 m8 offset-m2">
+    <div id="login" class="card login_card">
+      <div class="card-content card_content_title grey-text text-darken-4">
+
+        {% if error %}
+          <p class="error_msg">{{ error }}</p>
+        {% endif%}
+
+        <div class="center">
+            <div class="media-body">
+                <h5 class="ml-4">@{{ user.username }} | Postear Foto</h5>
+            </div>
+        </div><br><br><br>
+        <form  method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.as_p}}
+          
+          <div class="center">
+            <br><br>
+            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

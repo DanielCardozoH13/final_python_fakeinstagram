@@ -1,7 +1,7 @@
 from django import forms
 
 from django.contrib.auth.models import User
-from perfiles.models import Perfil
+from perfiles.models import Perfil, Foto
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class SignupForm(forms.Form):
@@ -35,7 +35,7 @@ class SignupForm(forms.Form):
 		profile.save()
 
 
-class PerfilForm(forms.Form):
+class updatePerfilForm(forms.Form):
 	SEXO_STATUS = [
 		('m', 'Mujer'),
 		('h', 'Hombre'),
@@ -54,4 +54,17 @@ class PerfilForm(forms.Form):
 		    'sitio_web',
 		    'biografia',
 		    'sexo'
+		)
+
+class addPostForm(forms.Form):
+	foto = forms.ImageField(label = "Foto", required=True)
+	titulo = forms.CharField(max_length=20, required=True, label='Titulo')
+	descripcion = forms.CharField(max_length=500, required=False, label='Descripción')
+
+	class Meta:
+		model = Foto
+		fields = (
+		    'titulo',
+		    'foto',
+		    'descripcion',
 		)
