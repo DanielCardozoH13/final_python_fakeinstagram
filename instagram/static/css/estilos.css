@@ -120,3 +120,8 @@ nav ul i {
   color: #b71c1c;
   padding: 13px;
 }
+.perfil_publicacion {
+  display: block;
+  width: 100%;
+  max-width: fit-content;
+}

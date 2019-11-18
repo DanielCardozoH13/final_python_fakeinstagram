@@ -29,7 +29,7 @@
             <strong class="elementos_perfil">222</strong> seguidos
             <strong class="elementos_perfil">333</strong> seguidores
             </p>
-            
+
             {% for dato in perfil%}
             <p>
               <strong>{{ user.get_full_name }} </strong><br>
@@ -48,14 +48,14 @@
 
   <div class="row galeria">
       {% for foto in fotos %}
-    <div class="col s12 m10 offset-m1">
-      <div id="publicacion" class="card">
+    <div class="col s12 m4">
+      <div id="publicacion" class="card ">
         <div class="card-content card_content_title grey-text text-darken-4">
           <i class="activator material-icons right">more_vert</i>
         </div>
 
-        <div class="card-image waves-effect waves-block waves-light">
-          <img  class="col s12 m4 materialboxed" src="{{ foto.foto.url }}">
+        <div class="card-image waves-effect waves-block waves-light perfil_publicacion">
+          <img  class="materialboxed" src="{{ foto.foto.url }}">
         </div>
 
         <div class="card-reveal">
