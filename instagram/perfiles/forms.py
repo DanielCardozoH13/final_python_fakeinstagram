@@ -2,14 +2,15 @@ from django import forms
 
 from django.contrib.auth.models import User
 from perfiles.models import Perfil
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class SignupForm(forms.Form):
-	username = forms.CharField(min_length=4, max_length=50)
-	password = forms.CharField(max_length=70, widget=forms.PasswordInput())
-	password_confirmation = forms.CharField(max_length=70, widget=forms.PasswordInput())
-	first_name = forms.CharField(min_length=2, max_length=50)
-	last_name = forms.CharField(min_length=2, max_length=50)
-	email = forms.CharField(min_length=6, max_length=70, widget=forms.EmailInput())
+	username = forms.CharField(min_length=4, max_length=50, label='usuario')
+	password = forms.CharField(max_length=70, widget=forms.PasswordInput(), label='Contraseña')
+	password_confirmation = forms.CharField(max_length=70, widget=forms.PasswordInput(), label='Confirmacion de Contraseña')
+	first_name = forms.CharField(min_length=2, max_length=50, label='Nombres')
+	last_name = forms.CharField(min_length=2, max_length=50, label='Apellidos')
+	email = forms.CharField(min_length=6, max_length=70, widget=forms.EmailInput(), label='Correo Electrónico')
 
 	def clean_username(self):
 		username = self.cleaned_data['username']
@@ -33,9 +34,24 @@ class SignupForm(forms.Form):
 		profile = Perfil(user=user)
 		profile.save()
 
+
 class PerfilForm(forms.Form):
-	website = forms.URLField(max_length=200, required=True)
-	biografia = forms.CharField(max_length=500, required=False)
-	telefono = forms.CharField(max_length=20, required=False)
-	sexo = forms.CharField(max_length=1, required=False)
-	foto = forms.ImageField()
+	SEXO_STATUS = [
+		('m', 'Mujer'),
+		('h', 'Hombre'),
+		('n', 'No_definido'),
+	]
+	foto = forms.ImageField(label = "Foto de Perfil", required=False)
+	website = forms.URLField(max_length=200, required=False, label='Sitio Web')
+	biografia = forms.CharField(max_length=500, required=False, label='Biografía')
+	telefono = forms.CharField(max_length=20, required=False, label='Telefono')
+	sexo = forms.ChoiceField(required=False, choices=SEXO_STATUS, widget=forms.RadioSelect, label='sexo')
+
+	class Meta:
+		model = Perfil
+		fields = (
+		    'foto_perfil',
+		    'sitio_web',
+		    'biografia',
+		    'sexo'
+		)

@@ -19,7 +19,6 @@
 
         <form action="{% url 'update_profile' %}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-
           <div class="center">
               {% if perfil.foto_perfil %}
                 <img src="{{ perfil.foto_perfil.url }}" class="perfil_foto" height="50" />
@@ -29,77 +28,13 @@
 
               <div class="media-body">
                   <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
-                  <p class="ml-4"><input type="file" name="foto_perfil" ></p>
               </div>
           </div>
-
-          {% for error in form.foto_perfil.errors %}
-          <div class="alert alert-danger">
-              <b>Foto: </b>{{ error }}
+          {{form.as_p}}
+          
+          <div class="center">
+            <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar</button>
           </div>
-          {% endfor %}
-          <hr><br>
-
-          <div class="form-group">
-              <label>Website</label>
-              <input
-                  class="form-control {% if form.sitio_web.errors %}is-invalid{% endif %}"
-                  type="text"
-                  name="sitio_web"
-                  placeholder="Website"
-                  value="{% if form.errors %}{{ form.sitio_web.value}}{% else %} {{ perfil.sitio_web }}{% endif %}"
-              />
-              <div class="invalid-feedback">
-                  {% for error in form.sitio_web.errors %}
-                      {{ error }}
-                  {% endfor %}
-              </div>
-          </div>
-
-          <div class="form-group">
-              <label>Biografia</label>
-              <textarea class="form-control {% if form.biografia.errors %}is-invalid{% endif %}"
-              name="biografia">{% if form.errors %}{{ form.biografia.value }}{% else %}{{ perfil.biografia }}{% endif %}</textarea>
-              <div class="invalid-feedback">
-                  {% for error in form.biografia.errors %}
-                      {{ error }}
-                  {% endfor %}
-              </div>
-          </div>
-
-          <div class="form-group">
-              <label>Phone number</label>
-              <input
-                  class="form-control {% if form.telefono.errors %}is-invalid{% endif %}"
-                  type="text"
-                  name="telefono"
-                  placeholder="Phone number"
-                  value="{% if form.errors %}{{ form.telefono.value }}{% else %}{{ perfil.telefono }}{% endif %}"
-              />
-              <div class="invalid-feedback">
-                  {% for error in form.telefono.errors %}
-                      {{ error }}
-                  {% endfor %}
-              </div>
-          </div>
-
-          <div class="form-group">
-              <label>Sexo</label>
-              <input
-                  class="form-control {% if form.sexo.errors %}is-invalid{% endif %}"
-                  type="text"
-                  name="sexo"
-                  placeholder="Phone number"
-                  value="{% if form.errors %}{{ form.sexo.value }}{% else %}{{ perfil.sexo }}{% endif %}"
-              />
-              <div class="invalid-feedback">
-                  {% for error in form.sexo.errors %}
-                      {{ error }}
-                  {% endfor %}
-              </div>
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block mt-5">Update info</button>
         </form>
 			</div>
 		</div>

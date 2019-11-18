@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.models import User
 from perfiles.models import Perfil
-from perfiles.forms import PerfilForm
+from perfiles.forms import PerfilForm, SignupForm
+
 
 
 def logout_view(request):
@@ -14,39 +14,50 @@ def logout_view(request):
 @login_required
 def perfil_view(request):
 	user = User.objects.get(username=request.user)
-	perfil = Perfil.objects.filter(user=user.id)
-	print(perfil)
-	return render(request, 'perfiles/perfil.html', {'perfil':perfil})
+	# perfil = Perfil.objects.filter(user=user.id).values()
+	perfil = Perfil.objects.all().filter(user=user.id)
+	if perfil[0].foto_perfil:
+		foto_perfil = perfil[0].foto_perfil.url
+	else:
+		foto_perfil=""
+
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil})
 
 def logup_view(request):
 	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
+		form = SignupForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return redirect('login')
 	else:
-		form = UserCreationForm()
+		form = SignupForm()
 
 	return render(request,'registration/logup.html', {'form':form})
 
 @login_required
 def update_profile(request):
 	user = User.objects.get(username=request.user)
-	perfil = Perfil.objects.filter(user=user.id)
+	perfil = Perfil.objects.get(user=user.id)
 
 	if request.method == 'POST':
+		template_name = 'perfiles/perfil.html'
 		form = PerfilForm(request.POST, request.FILES)
 		if form.is_valid():
 			data = form.cleaned_data
-			perfil.biografia = data['biografia']
-			perfil.sitio_web = data['sitio_web']
-			perfil.sexo = data['sexo']
+			print(data)
+			perfil.sitio_web = data['website']
 			perfil.telefono = data['telefono']
-			perfil.foto_perfil = data['foto_perfil']
+			perfil.biografia = data['biografia']
+			perfil.foto_perfil = data['foto']
+			perfil.sexo = data['sexo']
 			perfil.save()
 
-			return redirect(request, 'perfiles/perfil.html', {'perfil':perfil})
-
+			return redirect('perfil')
+		else:
+			print('no valido')
+			form = PerfilForm() 
+			args = {'form': form}
+			return render(request, template_name, args)
 	else:
 		form = PerfilForm()
 
