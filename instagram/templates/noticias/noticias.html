@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block container %}
+	<div class="col s12">
+		{% for historia in historias %}
+		<a href="#" class="imagen" data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.imagen }}" data-mensaje="{{ historia.mensaje }}" data-nombre="{{ historia.perfil.user }}">
+			<img src="{{ historia.imagen }}" width="80" height="80" style="object-fit: cover;">
+		</a>
+		{% endfor %}
+	</div>
 	{% for noticia in noticias %}
 		<div class="col s12 m4 offset-m4">
 			<div id="publicacion" class="card">

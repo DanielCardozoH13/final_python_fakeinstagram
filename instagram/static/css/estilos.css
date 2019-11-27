@@ -36,10 +36,12 @@ nav ul i {
 }
 
 .foto_perfil_pub {
+  border-radius: 50% !important;
+  object-fit: cover !important;
   width: 50px !important;
+  height: 50px !important;
   margin-left: -9px !important;
   margin-top: -10px !important;
-  border-radius: 500px;
 }
 
 .nombre_perfil_pub {
@@ -76,8 +78,11 @@ nav ul i {
   margin-top: 72px;
 }
 .perfil_foto {
+  border-radius: 50% !important;
+  object-fit: cover !important;
   width: 150px !important;
-  border-radius: 75px !important;
+  height: 150px !important;
+
 }
 .perfil_detalles {
   position: absolute;
