@@ -15,13 +15,23 @@
 
 		  <!-- Modal Structure -->
 		  <div id="modal{{ historia.perfil.id }}" class="modal">
-		    <div class="modal-content">
-		      <h4>Modal Header</h4>
-		      <p>A bunch of text</p>
-		    </div>
-		    <div class="modal-footer">
-		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-		    </div>
+				<div class="modal-content">
+					<div class="carousel carousel-slider center">
+						{% for historia_slider in historias %}
+					    <div class="carousel-item">
+								<div class="left col s12 m7">
+									<div class="perfil_publicacion modal_foto">
+										<img class="foto_square" src="{{ historia_slider.foto.url }}">
+									</div>
+								</div>
+								<div class="right col s12 m5">
+									<h4>Modal Header</h4>
+									<p>A bunch of text</p>
+								</div>
+					    </div>
+						{% endfor %}
+				  </div>
+				</div>
 		  </div>
 		{% endfor %}
 
