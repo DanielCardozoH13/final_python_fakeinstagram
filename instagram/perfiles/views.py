@@ -13,10 +13,14 @@ def logout_view(request):
 	return render(request, 'perfiles/login.html')
 
 @login_required
-def perfil_view(request):
-	user = User.objects.get(username=request.user)
-	# perfil = Perfil.objects.filter(user=user.id).values()
-	perfil = Perfil.objects.all().filter(user=user.id)
+def perfil_view(request, perfil_id = None):
+	if perfil_id:
+		perfil = Perfil.objects.all().filter(id=perfil_id)
+	else:
+		user = User.objects.get(username=request.user)
+		# perfil = Perfil.objects.filter(user=user.id).values()
+		perfil = Perfil.objects.all().filter(user=user.id)
+
 	if perfil[0].foto_perfil:
 		foto_perfil = perfil[0].foto_perfil.url
 	else:
@@ -129,7 +133,6 @@ def delete_post(request, post_id = None):
 	perfil = Perfil.objects.get(user=user.id)
 
 	if post_id:
-		print(post_id)
 		Foto.objects.get(id=post_id).delete()
 
 	return redirect('perfil')

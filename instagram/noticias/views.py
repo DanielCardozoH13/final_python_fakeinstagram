@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from noticias.models import Noticia
+from perfiles.models import Like
 
 
 noticias = Noticia.objects.all().order_by('-created')
@@ -9,3 +10,15 @@ noticias = Noticia.objects.all().order_by('-created')
 @login_required
 def listar_noticias(request):
 	return render(request, 'noticias/noticias.html', {'noticias':noticias})
+
+@login_required
+def me_gusta(request, foto_id=None, perfil_id=None):
+	if foto_id and perfil_id:
+		try:
+			like = Like(perfil_id=perfil_id,
+						foto_id=foto_id,)
+			like.save(force_insert=True)
+		except:
+			pass
+
+	return redirect('noticias')

@@ -17,8 +17,8 @@
 			<div id="publicacion" class="card">
 
 				<div class="card-content card_content_title grey-text text-darken-4">
-					<img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}">
-					<span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span>
+					<a href="{% url 'perfil_id' noticia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}"></a>
+					<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>
 					<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
 					<i class="activator material-icons right">more_vert</i>
 				</div>
@@ -28,9 +28,9 @@
 				</div>
 
 				<div class="card-content opciones_pub">
-					<i href="" class="material-icons icons_pub">star_border</i>
+					<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="" class="material-icons icons_pub">favorite_border</i></a>
 					<i href="" class="material-icons icons_pub">chat_bubble_outline</i>
-					<i href="" class="material-icons icons_pub">arrow_upward</i>
+					<!-- <i href="" class="material-icons icons_pub">arrow_upward</i> -->
 					<i href="" class="right material-icons">bookmark_border</i>
 				</div>
 				<div class="card-content comentarios_pub">

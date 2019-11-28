@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', noticias_views.listar_noticias, name='noticias'),
     path('perfil/', perfiles_views.perfil_view, name="perfil"),
+    path('perfil/<int:perfil_id>', perfiles_views.perfil_view, name="perfil_id"),
 
     path('perfiles/logup', perfiles_views.logup_view, name="logup"),
     path('perfiles/login/', LoginView.as_view(), name="login"),
@@ -18,5 +19,6 @@ urlpatterns = [
     path('perfiles/add_post', perfiles_views.add_post, name='add_post'),
     path('perfiles/edit_post', perfiles_views.edit_post, name='edit_post'),
     path('perfiles/delete_post/<int:post_id>', perfiles_views.delete_post, name='delete_post'),
+    path('noticias/me_gusta/<int:foto_id>/<int:perfil_id>', noticias_views.me_gusta, name='me_gusta'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
