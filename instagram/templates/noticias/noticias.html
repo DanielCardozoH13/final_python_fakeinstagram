@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block container %}
-	<div class="col s12">
+	<div class="col s12 histories_section">
+		<a href="{% url 'add_post' %}" class="large material-icons add_histories">add_circle</a>
 		{% for historia in historias %}
 		<a href="#" class="imagen"  data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.foto }}" data-mensaje="{{ historia.descripcion }}" data-nombre="{{ historia.perfil.user }}">
 			<img src="{{ historia.foto.url }}" width="80" height="80" style="object-fit: cover;">
