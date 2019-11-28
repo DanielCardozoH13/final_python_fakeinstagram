@@ -55,7 +55,8 @@
         </div>
 
         <div class="card-image waves-effect waves-block waves-light perfil_publicacion">
-          <img  class="materialboxed" src="{{ foto.foto.url }}">
+          <img  class="materialboxed" src="{{ foto.foto.url }}" alt="250x300" style="width: 249px;
+    height: 250px;">
         </div>
 
         <div class="card-reveal">
@@ -81,7 +82,8 @@
                   </div>
                   <div class="col s6">
                     <div class="center">
-                      <button type="#" class="btn btn-danger btn-block mt-5">Eliminar</button>
+                      <a href="{% url 'delete_post' foto.id %}" class="btn btn-danger btn-block mt-5">Eliminar</a>
+                      <!-- <button type="#" class="btn btn-danger btn-block mt-5">Eliminar</button> -->
                     </div>
                   </div>
                 </div>

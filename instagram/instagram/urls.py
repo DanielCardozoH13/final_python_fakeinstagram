@@ -17,5 +17,6 @@ urlpatterns = [
     path('users/me/profile/', perfiles_views.update_profile, name='update_profile'),
     path('perfiles/add_post', perfiles_views.add_post, name='add_post'),
     path('perfiles/edit_post', perfiles_views.edit_post, name='edit_post'),
+    path('perfiles/delete_post/<int:post_id>', perfiles_views.delete_post, name='delete_post'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
