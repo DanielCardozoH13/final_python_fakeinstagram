@@ -126,7 +126,22 @@ nav ul i {
   padding: 13px;
 }
 .perfil_publicacion {
-  display: block;
-  width: 100%;
-  max-width: fit-content;
+  display: table !important;
+  position: relative !important;
+  padding-bottom: 100% !important;
+  width: 100% !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+.foto_square {
+  width: -webkit-fill-available !important;
+  display: table-cell !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  margin: auto !important;
+  text-align: center !important;
+  vertical-align: middle !important;
 }
