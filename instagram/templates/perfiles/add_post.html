@@ -25,7 +25,7 @@
         <form  method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           {{form.as_p}}
-          
+          <input type="hidden" name="is_history" value={{is_history}} id="is_history">
           <div class="center">
             <br><br>
             <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>

@@ -76,12 +76,18 @@ def update_profile(request):
 		)
 
 @login_required
-def add_post(request):
+def add_post(request, history=None):
 	template_name='perfiles/add_post.html'
 	user = User.objects.get(username=request.user)
 	perfil = Perfil.objects.get(user=user.id)
 
+	if history == 'True':
+		history = 1
+	else:
+		history = 0
+
 	if request.method == 'POST':
+		history = request.POST['is_history']
 		form = addPostForm(request.POST, request.FILES)
 		if form.is_valid():
 			data = form.cleaned_data
@@ -89,13 +95,15 @@ def add_post(request):
 						titulo=data['titulo'],
 						descripcion=data['descripcion'],
 						foto=data['foto'],
+						is_historia=history,
 						)
 			foto.save(force_insert=True)
-			#foto = Foto.objects.get(perfil=perfil.id)
-			noticias = Noticia(user=user,
-								perfil=perfil,
-								foto=foto,)
-			noticias.save(force_insert=True)
+
+			if history == 0:
+				noticias = Noticia(user=user,
+									perfil=perfil,
+									foto=foto,)
+				noticias.save(force_insert=True)
 
 			return redirect('perfil')
 		else:
@@ -109,7 +117,7 @@ def add_post(request):
 		request=request,
 		template_name = template_name,
 		context = {
-			'form':form
+			'form':form, 'is_history':history
 			}
 		)
 

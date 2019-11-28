@@ -61,6 +61,7 @@ class addPostForm(forms.Form):
 	titulo = forms.CharField(max_length=20, required=True, label='Titulo')
 	descripcion = forms.CharField(max_length=500, required=False, label='Descripción')
 
+
 	class Meta:
 		model = Foto
 		fields = (

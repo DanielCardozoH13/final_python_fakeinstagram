@@ -48,19 +48,19 @@ class Foto(models.Model):
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
 
 class Comentario(models.Model):
-	perfil_id = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
-	foto_id = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
+	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
+	foto = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
 	descripcion = models.TextField(max_length=1000, blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
 
 class Like(models.Model):
-	perfil_id = models.OneToOneField(Perfil, on_delete=models.CASCADE, blank=True, null=True)
-	foto_id = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
+	perfil = models.OneToOneField(Perfil, on_delete=models.CASCADE, blank=True, null=True)
+	foto = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 
 class Seguidor(models.Model):
-	perfil_id = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguido')
+	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguido')
 	followed_user_id = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguidor')
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)

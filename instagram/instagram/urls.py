@@ -17,6 +17,7 @@ urlpatterns = [
     path('perfiles/logout/', LogoutView.as_view(next_page='login'), name="logout"),
     path('users/me/profile/', perfiles_views.update_profile, name='update_profile'),
     path('perfiles/add_post', perfiles_views.add_post, name='add_post'),
+    path('perfiles/add_post/<str:history>', perfiles_views.add_post, name='add_history'),
     path('perfiles/edit_post', perfiles_views.edit_post, name='edit_post'),
     path('perfiles/delete_post/<int:post_id>', perfiles_views.delete_post, name='delete_post'),
     path('noticias/me_gusta/<int:foto_id>/<int:perfil_id>', noticias_views.me_gusta, name='me_gusta'),
