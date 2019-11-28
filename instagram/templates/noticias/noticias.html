@@ -38,8 +38,20 @@
 						<i class="activator material-icons right">more_vert</i>
 					</div>
 
-					<div class="card-image waves-effect waves-block waves-light">
-						<img class="activator" src="{{ noticia.foto.foto.url }}">
+					<div class="card-image waves-effect waves-block waves-light perfil_publicacion">
+						<img href="#modal_noticia{{ noticia.id }}" class="modal-trigger foto_square" src="{{ noticia.foto.foto.url }}">
+
+						<!-- Modal Structure -->
+						<div id="modal_noticia{{ noticia.id }}" class="modal">
+							<div class="modal-content">
+								<h4>Modal Header</h4>
+								<p>A bunch of text</p>
+							</div>
+							<div class="modal-footer">
+								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+							</div>
+						</div>
+
 					</div>
 
 					<div class="card-content opciones_pub">
