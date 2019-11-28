@@ -8,10 +8,23 @@
 	<div class="col s12 histories_section">
 		<a href="{% url 'add_post' %}" class="large material-icons add_histories">add_circle</a>
 		{% for historia in historias %}
-		<a href="#" class="imagen"  data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.foto }}" data-mensaje="{{ historia.descripcion }}" data-nombre="{{ historia.perfil.user }}">
-			<img src="{{ historia.foto.url }}" width="80" height="80" style="object-fit: cover;">
-		</a>
+			<!-- Modal Trigger -->
+			<a href="#modal{{ historia.perfil.id }}" class="modal-trigger imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.foto }}" data-mensaje="{{ historia.descripcion }}" data-nombre="{{ historia.perfil.user }}">
+				<img src="{{ historia.foto.url }}" width="80" height="80" style="object-fit: cover;">
+			</a>
+
+		  <!-- Modal Structure -->
+		  <div id="modal{{ historia.perfil.id }}" class="modal">
+		    <div class="modal-content">
+		      <h4>Modal Header</h4>
+		      <p>A bunch of text</p>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+		    </div>
+		  </div>
 		{% endfor %}
+
 	</div>
 	{% for noticia in noticias %}
 		<div class="col s12 m4 offset-m4">
