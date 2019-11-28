@@ -44,11 +44,15 @@
 						<!-- Modal Structure -->
 						<div id="modal_noticia{{ noticia.id }}" class="modal">
 							<div class="modal-content">
-								<h4>Modal Header</h4>
-								<p>A bunch of text</p>
-							</div>
-							<div class="modal-footer">
-								<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+								<div class="left col s12 m7">
+									<div class="perfil_publicacion modal_foto">
+										<img class="foto_square" src="{{ noticia.foto.foto.url }}">
+									</div>
+								</div>
+								<div class="right col s12 m5">
+									<h4>Modal Header</h4>
+									<p>A bunch of text</p>
+								</div>
 							</div>
 						</div>
 
