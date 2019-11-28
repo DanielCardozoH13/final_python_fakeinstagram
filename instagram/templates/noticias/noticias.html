@@ -7,8 +7,8 @@
 {% block container %}
 	<div class="col s12">
 		{% for historia in historias %}
-		<a href="#" class="imagen" data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.imagen }}" data-mensaje="{{ historia.mensaje }}" data-nombre="{{ historia.perfil.user }}">
-			<img src="{{ historia.imagen }}" width="80" height="80" style="object-fit: cover;">
+		<a href="#" class="imagen"  data-toggle="modal" data-target="#imagen" data-perfil="{{ historia.perfil.foto_perfil }}" data-imagen="{{ historia.foto }}" data-mensaje="{{ historia.descripcion }}" data-nombre="{{ historia.perfil.user }}">
+			<img src="{{ historia.foto.url }}" width="80" height="80" style="object-fit: cover;">
 		</a>
 		{% endfor %}
 	</div>

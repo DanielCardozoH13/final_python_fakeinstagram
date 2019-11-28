@@ -42,6 +42,7 @@ class Foto(models.Model):
 		blank=False,
 		null=False,
 		)
+	is_historia = models.BooleanField(default=False)
 	descripcion = models.TextField(max_length=1000, blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
