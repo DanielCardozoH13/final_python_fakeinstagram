@@ -27,38 +27,40 @@
 
 	</div>
 	{% for noticia in noticias %}
-		<div class="col s12 m4 offset-m4">
-			<div id="publicacion" class="card">
+		{% if noticia.foto.is_historia == False %}
+			<div class="col s12 m4 offset-m4">
+				<div id="publicacion" class="card">
 
-				<div class="card-content card_content_title grey-text text-darken-4">
-					<a href="{% url 'perfil_id' noticia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}"></a>
-					<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>
-					<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
-					<i class="activator material-icons right">more_vert</i>
-				</div>
+					<div class="card-content card_content_title grey-text text-darken-4">
+						<a href="{% url 'perfil_id' noticia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}"></a>
+						<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>
+						<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
+						<i class="activator material-icons right">more_vert</i>
+					</div>
 
-				<div class="card-image waves-effect waves-block waves-light">
-					<img class="activator" src="{{ noticia.foto.foto.url }}">
-				</div>
+					<div class="card-image waves-effect waves-block waves-light">
+						<img class="activator" src="{{ noticia.foto.foto.url }}">
+					</div>
 
-				<div class="card-content opciones_pub">
-					<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="" class="material-icons icons_pub">favorite_border</i></a>
-					<i href="" class="material-icons icons_pub">chat_bubble_outline</i>
-					<!-- <i href="" class="material-icons icons_pub">arrow_upward</i> -->
-					<i href="" class="right material-icons">bookmark_border</i>
-				</div>
-				<div class="card-content comentarios_pub">
-					<span class="activator grey-text text-darken-4">
-						<strong>{{ noticia.user }}</strong>
-						{{ noticia.foto.titulo }}
-					</span>
-				</div>
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4">{{ noticia.user }}<i class="material-icons right">close</i></span>
-					<p>{{ noticia.foto_id.titulo }}</p>
-					<p>COMENTARIOS</p>
+					<div class="card-content opciones_pub">
+						<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="" class="material-icons icons_pub">favorite_border</i></a>
+						<i href="" class="material-icons icons_pub">chat_bubble_outline</i>
+						<!-- <i href="" class="material-icons icons_pub">arrow_upward</i> -->
+						<i href="" class="right material-icons">bookmark_border</i>
+					</div>
+					<div class="card-content comentarios_pub">
+						<span class="activator grey-text text-darken-4">
+							<strong>{{ noticia.user }}</strong>
+							{{ noticia.foto.titulo }}
+						</span>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title grey-text text-darken-4">{{ noticia.user }}<i class="material-icons right">close</i></span>
+						<p>{{ noticia.foto_id.titulo }}</p>
+						<p>COMENTARIOS</p>
+					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}
 	{% endfor %}
 {% endblock %}

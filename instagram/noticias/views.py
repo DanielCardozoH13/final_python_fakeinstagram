@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
-from datetime import datetime
+from datetime import timedelta
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from noticias.models import Noticia
 from perfiles.models import Like, Foto
 
-
 noticias = Noticia.objects.all().order_by('-created')
-historias = Foto.objects.all().filter(is_historia=True).order_by('-created')
+
+today = timezone.now()
+yesterday = today - timedelta(days=1)
+historias = Foto.objects.all().filter(is_historia=True, created__range=[yesterday, today]).order_by('-created')
 
 @login_required
 def listar_noticias(request):
