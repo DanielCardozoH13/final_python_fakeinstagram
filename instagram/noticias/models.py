@@ -25,3 +25,9 @@ class Noticia(models.Model):
 
 		return likes
 
+	@property
+	def liked_foto(self):
+		liked = Like.objects.filter(foto_id=self.foto, perfil_id = self.perfil).count()
+		return liked
+	
+

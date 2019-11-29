@@ -106,11 +106,9 @@
 						</div>
 
 					</div>
-
+					
 					<div class="card-content opciones_pub">
-						{{ noticia.likes_foto}}
-						<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="#" class="material-icons icons_pub">favorite_border</i>
-							</a>
+						<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="#" class="material-icons icons_pub">{% if noticia.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</i>{% if noticia.likes_foto > 0 %}{{ noticia.likes_foto}}{% endif %}</a>
 						<i href="" class="material-icons icons_pub">chat_bubble_outline</i>
 						<!-- <i href="" class="material-icons icons_pub">arrow_upward</i> -->
 						<i href="" class="right material-icons">bookmark_border</i>
