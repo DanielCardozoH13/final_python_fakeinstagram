@@ -49,7 +49,6 @@ class Foto(models.Model):
 
 	@property
 	def comentarios(self):
-		print("entro al modelo")
 		comentarios = Comentario.objects.all().filter(foto_id=self.id)
 		return comentarios
 

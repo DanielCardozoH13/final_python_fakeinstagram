@@ -78,16 +78,15 @@ def update_profile(request):
 		)
 
 @login_required
-def add_post(request, history=None):
+def add_post(request, history=0):
 	template_name='perfiles/add_post.html'
 	user = User.objects.get(username=request.user)
 	perfil = Perfil.objects.get(user=user.id)
 
 	if history == 'True':
-		history = 1
+		is_history = 1
 	else:
-		history = 0
-
+		is_history = 0
 	if request.method == 'POST':
 		history = request.POST['is_history']
 		form = addPostForm(request.POST, request.FILES)
@@ -101,7 +100,7 @@ def add_post(request, history=None):
 						)
 			foto.save(force_insert=True)
 
-			if history == 0:
+			if is_history == 0:
 				noticias = Noticia(user=user,
 									perfil=perfil,
 									foto=foto,)
@@ -137,12 +136,15 @@ def edit_post(request):
 	return redirect('perfil')
 
 @login_required
-def delete_post(request, post_id = None):
+def delete_post(request, post_id = None, pagina = 'perfil'):
 	template_name='perfiles/perfil.html'
 	user = User.objects.get(username=request.user)
 	perfil = Perfil.objects.get(user=user.id)
-
+	print("llego a delete")
 	if post_id:
 		Foto.objects.get(id=post_id).delete()
 
-	return redirect('perfil')
+	if pagina == 'perfil':
+		return redirect('perfil')
+	elif pagina == 'noticias':
+		return redirect('noticias')

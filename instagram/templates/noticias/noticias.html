@@ -21,11 +21,6 @@
 					<div class="carousel carousel-slider center">
 						{% for historia_slider in historias %}
 					    <div class="carousel-item">
-								{% if request.user.id == historia_slider.perfil.user.id %}
-									<i href="{% url 'delete_post' historia_slider.id %}" class="material-icons right">delete</i>
-								{% endif %}
-								<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
-								<p class="right count_likes">{% if historia_slider.likes_foto > 0 %}{{ historia_slider.likes_foto}}{% endif %}</p>
 								<div class="left col s12 m7">
 									<div class="perfil_publicacion modal_foto">
 										<img class="foto_square" src="{{ historia_slider.foto.url }}">
@@ -33,25 +28,25 @@
 								</div>
 								<div class="right col s12 m5">
 									<div class="col s12">
-										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_historia" src="{{ historia.perfil.foto_perfil.url }}"></a>
-									</div>
-									<div class="col s12">
-										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_historia"><strong>{{ historia.perfil.user }}</strong></span></a>
-										<br><br>
+										{% if request.user.id == historia_slider.perfil.user.id %}
+											<a href="{% url 'delete_post' historia_slider.id %} /'noticias'"><i  class="material-icons right">delete</i></a>
+										{% endif %}
+										<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
+										<p class="right count_likes">{% if historia_slider.likes_foto > 0 %}{{ historia_slider.likes_foto}}{% endif %}</p>
+
+										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ historia.perfil.foto_perfil.url }}"></a>
+										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ historia.perfil.user }}</strong></span></a>
 									</div>
 									<div class="comentarios">
+
 										{% for comentario in historia.comentarios %}
-											<div class="col s12">
-												<div class="left">
-													<a href="{% url 'perfil_id' historia.perfil.id %}"><strong>{{ historia.perfil.user }}</strong></a>
-													{{comentario.descripcion}}
-												</div>
-											</div>
+											<h1>{{comentario.descripcion}}</h1>
 										{% endfor %}
 										<form class="col s12" method="POST" action="{% url 'comentario' historia.id historia.perfil.id %}">
                       {% csrf_token %}
                       <div class="row">
                         <div class="input-field col s12">
+                          <label for="titulo">Comentario</label>
                           <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
                         </div>
                       </div>
@@ -75,7 +70,7 @@
 
 	</div>
 	{% for noticia in noticias %}
-		{% if noticia.foto.is_historia == 0  %}
+		{% if noticia.foto.is_historia == False  %}
 			<div class="col s12 m4 offset-m4">
 				<div id="publicacion" class="card">
 
@@ -99,8 +94,8 @@
 								</div>
 								<div class="right col s12 m5">
 									{% if request.user.id == noticia.perfil.user.id %}
-										<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
-									{% endif %}
+										<a href="{% url 'delete_noticia' noticia.foto.id  %}"><i class="material-icons right">delete</i></a>
+									{% endif %}d
 									<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}">{% if noticia.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
 									<p class="right count_likes">{% if noticia.likes_foto > 0 %}{{ noticia.likes_foto}}{% endif %}</p>
 									<div class="col s12">
@@ -109,30 +104,11 @@
 										<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
 									</div>
 									<div class="comentarios">
-										{% for comentario in noticia.comentarios %}
-											<div class="col s12">
-												<div class="left">
-													<a href="{% url 'perfil_id' noticia.perfil.id %}"><strong>{{ noticia.perfil.user }}</strong></a>
-													{{comentario.descripcion}}
-												</div>
-											</div>
+										{% for comentario in noticia.foto.comentario %}
+											<a href="{% url 'perfil_id' comentario.perfil.id %}"> <img class="foto_perfil_pub" src="{{ comentario.perfil.foto_perfil.url }}"></a>
+											<a href="{% url 'perfil_id' comentario.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ comentario.user }}</strong></span></a>
+											<span class="fecha_perfil_pub">{{ comentario.foto.created }}</span>
 										{% endfor %}
-										<form class="col s12" method="POST" action="{% url 'comentario' noticia.id noticia.perfil.id %}">
-                      {% csrf_token %}
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col s6">
-                          <div class="center">
-                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
-                    </form>
 									</div>
 								</div>
 							</div>
