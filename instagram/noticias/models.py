@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from perfiles.models import Perfil, Foto
+from perfiles.models import Perfil, Foto, Like
+from django.db.models import Count
+
 
 
 
@@ -15,3 +17,11 @@ class Noticia(models.Model):
 	modified = models.DateTimeField(auto_now=True)
 	#foto = models.ImageField(upload_to='noticias/fotos',blank=True,
 	#	null=True,)
+
+	@property
+	def likes_foto(self):
+		"Returns los likes de la foto del id enviado."
+		likes = Like.objects.filter(foto_id=self.foto).count()
+
+		return likes
+

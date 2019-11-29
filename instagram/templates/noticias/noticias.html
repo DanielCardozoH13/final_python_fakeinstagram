@@ -108,11 +108,7 @@
 					</div>
 
 					<div class="card-content opciones_pub">
-						{% for like in likes %}
-							{% if like.foto_id == noticia.foto.id %}
-								<h1>{{like.count}}</h1>
-							{% endif %}
-						{% endfor %}
+						{{ noticia.likes_foto}}
 						<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="#" class="material-icons icons_pub">favorite_border</i>
 							</a>
 						<i href="" class="material-icons icons_pub">chat_bubble_outline</i>

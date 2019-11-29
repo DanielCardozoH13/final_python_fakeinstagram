@@ -23,12 +23,17 @@ def listar_noticias(request):
 @login_required
 def me_gusta(request, foto_id=None, perfil_id=None):
 	if foto_id and perfil_id:
-		perfil = Perfil.objects.get(id=perfil_id)
-		foto = Foto.objects.get(id=foto_id)
-		print(foto)
+		try:
+			#si existe el like, lo elimna.
+			like_validation = Like.objects.get(foto_id=foto_id, perfil_id=perfil_id)
+			like_validation.delete()
+		except:
+			#si no existe el like lo crea.
+			perfil = Perfil.objects.get(id=perfil_id)
+			foto = Foto.objects.get(id=foto_id)
 
-		like = Like(perfil=perfil,
-					foto=foto,)
-		like.save(force_insert=True)
+			like = Like(perfil=perfil,
+						foto=foto,)
+			like.save(force_insert=True)
 
 	return redirect('noticias')

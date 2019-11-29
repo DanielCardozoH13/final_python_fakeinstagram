@@ -55,7 +55,7 @@ class Comentario(models.Model):
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
 
 class Like(models.Model):
-	perfil = models.OneToOneField(Perfil, on_delete=models.CASCADE, blank=True, null=True)
+	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
 	foto = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
