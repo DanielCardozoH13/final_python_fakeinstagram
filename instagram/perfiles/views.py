@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
-from perfiles.models import Perfil, Foto
+from perfiles.models import Perfil, Foto, Seguidores
 from noticias.models import Noticia
 from perfiles.forms import updatePerfilForm, SignupForm, addPostForm
 
@@ -26,8 +26,10 @@ def perfil_view(request, perfil_id = None):
 		foto_perfil = perfil[0].foto_perfil.url
 	else:
 		foto_perfil=""
+
 	fotos = Foto.objects.all().filter(perfil=perfil[0].id).order_by('-created')
 	cant_fotos = Foto.objects.filter(is_historia=False, perfil=perfil[0].id).count()
+
 
 	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos, 'cant_fotos':cant_fotos})
 
@@ -156,3 +158,23 @@ def delete_historia(request, post_id = None, pagina = 'perfil'):
 		Foto.objects.get(id=post_id).delete()
 	
 	return redirect('noticias')
+
+@login_required
+def seguir (request, perfil_id = None):
+	if perfil_id:
+		try:
+			perfil_seguidor = Perfil.objects.get(user_id = request.user.id)
+			seguidor = Seguidores.objects.get(seguido=perfil_id, seguidor=perfil_seguidor)
+			seguidor.delete()
+		except:
+			perfil_seguido = Perfil.objects.get(id = perfil_id)
+			perfil_seguidor = Perfil.objects.get(user_id = request.user.id)
+
+			new_seguidor = Seguidores(seguido=perfil_seguido,
+										seguidor=perfil_seguidor,
+										)
+			
+			new_seguidor.save()
+
+
+	return redirect('perfil_id', perfil_id=perfil_id )

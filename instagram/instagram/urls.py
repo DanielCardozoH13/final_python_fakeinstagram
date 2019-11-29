@@ -23,5 +23,6 @@ urlpatterns = [
     path('perfiles/delete_post/<int:post_id>/noticias', perfiles_views.delete_historia, name='delete_noticia'),
     path('noticias/me_gusta/<int:foto_id>/<int:perfil_id>', noticias_views.me_gusta, name='me_gusta'),
     path('noticias/comentario/<int:foto_id>/<int:perfil_id>', noticias_views.add_comment, name='comentario'),
+    path('perfiles/seguir/<int:perfil_id>', perfiles_views.seguir, name='seguir'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

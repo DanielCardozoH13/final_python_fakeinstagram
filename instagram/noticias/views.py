@@ -15,9 +15,9 @@ def listar_noticias(request):
 	today = timezone.now()
 	yesterday = today - timedelta(days=1)
 	historias = Foto.objects.all().filter(is_historia=True, created__range=[yesterday, today]).order_by('-created')
-	print(noticias)
+
 	return render(request, 'noticias/noticias.html', {'noticias':noticias, 'historias':historias})
-	# return render(request, 'noticias/noticias.html', {'noticias':noticias})
+
 
 @login_required
 def me_gusta(request, foto_id=None, perfil_id=None):

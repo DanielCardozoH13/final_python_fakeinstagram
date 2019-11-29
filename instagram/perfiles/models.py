@@ -20,7 +20,7 @@ class Perfil(models.Model):
 		null=True,
 		default='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_Bf0-x44hsGqqcQwrTcNeLUSnYjlDuoql-hQHydDdBwxeCT2'
 		)
-	seguidores = models.ManyToManyField('self', through='Seguidor',
+	seguidores = models.ManyToManyField('self', through='Seguidores',
                                       symmetrical=False)
 
 	def __str__(self):
@@ -34,6 +34,17 @@ class Perfil(models.Model):
 														self.modified,
 														)
 
+	@property
+	def seguidores(self):
+		seguidores = Seguidores.objects.filter(seguido=self.id)
+		return seguidores
+
+	@property
+	def seguidos(self):
+		seguidos = Seguidores.objects.filter(seguidor=self.id)
+		return seguidos
+
+	
 
 class Foto(models.Model):
 	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
@@ -65,7 +76,7 @@ class Like(models.Model):
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
 
-class Seguidor(models.Model):
-	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguido')
-	followed_user_id = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguidor')
+class Seguidores(models.Model):
+	seguido = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguido')
+	seguidor = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='Seguidor')
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)

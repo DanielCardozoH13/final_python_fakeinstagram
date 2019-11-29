@@ -17,29 +17,32 @@
 		      {% endif %}
 
         </div>
+        {% for dato in perfil%}
         <div class="col s8">
           <span class="perfil_detalles grey-text text-darken-4">
             <h5>
-              @{{ request.user.username }}
+              @{{ dato.user.username }}
+              <a href="{% url 'seguir' dato.id %}" class="btn btn-danger mt-2">seguir</a>
               <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
             </h5>
 
             <p>
             <strong>{{cant_fotos}}</strong> publicaciones
-            <strong class="elementos_perfil">222</strong> seguidos
-            <strong class="elementos_perfil">333</strong> seguidores
+            <strong class="elementos_perfil">{{dato.seguidos.count }}</strong> seguidos
+            <strong class="elementos_perfil">{{dato.seguidores.count }}</strong> seguidores
             </p>
 
-            {% for dato in perfil%}
+            
             <p>
               <strong>{{ user.get_full_name }} </strong><br>
               <span>{{ dato.sitio_web }}</span>
             </p>
             <p>{{ dato.biografia }}</p>
-            {% endfor %}
+            
 
           </span>
         </div>
+        {% endfor %}
       </div>
     </div>
 
@@ -85,7 +88,6 @@
                         <div class="col s6">
                           <div class="center">
                             <a href="{% url 'delete_post' foto.id %}" class="btn btn-danger btn-block mt-5">Eliminar</a>
-                            <!-- <button type="#" class="btn btn-danger btn-block mt-5">Eliminar</button> -->
                           </div>
                         </div>
                       </div>
