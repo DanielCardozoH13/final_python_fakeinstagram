@@ -28,6 +28,12 @@
 								</div>
 								<div class="right col s12 m5">
 									<div class="col s12">
+										{% if request.user.id == historia_slider.perfil.user.id %}
+											<i href="{% url 'delete_post' historia_slider.foto.id %}" class="material-icons right">delete</i>
+										{% endif %}
+										<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.foto.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
+										<p class="right count_likes">{% if historia_slider.likes_foto > 0 %}{{ historia_slider.likes_foto}}{% endif %}</p>
+
 										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ historia.perfil.foto_perfil.url }}"></a>
 										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ historia.perfil.user }}</strong></span></a>
 									</div>
@@ -87,7 +93,9 @@
 									</div>
 								</div>
 								<div class="right col s12 m5">
-									<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
+									{% if request.user.id == noticia.perfil.user.id %}
+										<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
+									{% endif %}
 									<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}">{% if noticia.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
 									<p class="right count_likes">{% if noticia.likes_foto > 0 %}{{ noticia.likes_foto}}{% endif %}</p>
 									<div class="col s12">
@@ -107,7 +115,7 @@
 						</div>
 
 					</div>
-					
+
 					<div class="card-content opciones_pub">
 						<a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}"><i href="#" class="material-icons icons_pub">{% if noticia.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</i>{% if noticia.likes_foto > 0 %}{{ noticia.likes_foto}}{% endif %}</a>
 						<i href="" class="material-icons icons_pub">chat_bubble_outline</i>
