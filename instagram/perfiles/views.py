@@ -9,6 +9,7 @@ from perfiles.forms import updatePerfilForm, SignupForm, addPostForm
 
 
 
+
 def logout_view(request):
 	return render(request, 'perfiles/login.html')
 
@@ -26,8 +27,9 @@ def perfil_view(request, perfil_id = None):
 	else:
 		foto_perfil=""
 	fotos = Foto.objects.all().filter(perfil=perfil[0].id).order_by('-created')
+	cant_fotos = Foto.objects.filter(is_historia=False, perfil=perfil[0].id).count()
 
-	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos})
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos, 'cant_fotos':cant_fotos})
 
 def logup_view(request):
 	if request.method == 'POST':
