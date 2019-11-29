@@ -87,8 +87,8 @@
 								</div>
 								<div class="right col s12 m5">
 									<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
-									<i href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}" class="material-icons icons_pub right">favorite_border</i>
-									<p class="right count_likes">{{ 'likes' }}</p>
+									<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}">{% if noticia.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
+									<p class="right count_likes">{% if noticia.likes_foto > 0 %}{{ noticia.likes_foto}}{% endif %}</p>
 									<div class="col s12">
 										<a href="{% url 'perfil_id' noticia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}"></a>
 										<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>

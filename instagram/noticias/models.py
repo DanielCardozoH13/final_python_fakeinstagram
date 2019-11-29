@@ -22,11 +22,11 @@ class Noticia(models.Model):
 	def likes_foto(self):
 		"Returns los likes de la foto del id enviado."
 		likes = Like.objects.filter(foto_id=self.foto).count()
-
 		return likes
 
 	@property
 	def liked_foto(self):
+		##retornara 1 si hay un like del usuario sobre la foto
 		liked = Like.objects.filter(foto_id=self.foto, perfil_id = self.perfil).count()
 		return liked
 	
