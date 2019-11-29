@@ -29,9 +29,9 @@
 								<div class="right col s12 m5">
 									<div class="col s12">
 										{% if request.user.id == historia_slider.perfil.user.id %}
-											<i href="{% url 'delete_post' historia_slider.foto.id %}" class="material-icons right">delete</i>
+											<i href="{% url 'delete_post' historia_slider.id %}" class="material-icons right">delete</i>
 										{% endif %}
-										<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.foto.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
+										<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
 										<p class="right count_likes">{% if historia_slider.likes_foto > 0 %}{{ historia_slider.likes_foto}}{% endif %}</p>
 
 										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ historia.perfil.foto_perfil.url }}"></a>
