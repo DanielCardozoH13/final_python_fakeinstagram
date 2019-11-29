@@ -44,7 +44,8 @@ class Perfil(models.Model):
 		seguidos = Seguidores.objects.filter(seguidor=self.id)
 		return seguidos
 
-	
+
+
 
 class Foto(models.Model):
 	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)

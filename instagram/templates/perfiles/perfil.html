@@ -22,8 +22,10 @@
           <span class="perfil_detalles grey-text text-darken-4">
             <h5>
               @{{ dato.user.username }}
-              <a href="{% url 'seguir' dato.id %}" class="btn btn-danger mt-2">seguir</a>
-              <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
+              {% if dato.user.id != request.user.id %}
+                <a href="{% url 'seguir' dato.id %}" class="btn btn-danger mt-2">seguir</a>
+              {% endif %}
+                <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
             </h5>
 
             <p>
