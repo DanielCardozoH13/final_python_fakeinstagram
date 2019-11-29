@@ -44,10 +44,24 @@ nav ul i {
   margin-top: -10px !important;
 }
 
+.foto_perfil_historia {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  width: 50px !important;
+  height: 50px !important;
+}
+
 .nombre_perfil_pub {
   position: absolute;
   margin: 7px;
   margin-top: -4px !important;
+}
+
+.nombre_perfil_historia {
+  position: absolute;
+  margin: 7px;
+  margin-top: -4px !important;
+  margin-left: -25px;
 }
 
 .fecha_perfil_pub {
