@@ -27,8 +27,15 @@
 									</div>
 								</div>
 								<div class="right col s12 m5">
-									<h4>Modal Header</h4>
-									<p>A bunch of text</p>
+									<div class="col s12">
+										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ historia.perfil.foto_perfil.url }}"></a>
+										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ historia.perfil.user }}</strong></span></a>
+									</div>
+									<div class="comentarios">
+										{% for comentario in historia.foto.comentario %}
+										
+										{% endfor %}
+									</div>
 								</div>
 					    </div>
 						{% endfor %}
@@ -62,15 +69,16 @@
 									</div>
 								</div>
 								<div class="right col s12 m5">
+									<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
+									<i href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}" class="material-icons icons_pub right">favorite_border</i>
+									<p class="right count_likes">{{ 'likes' }}</p>
 									<div class="col s12">
-										<i href="{% url 'delete_post' noticia.foto.id %}" class="material-icons right">delete</i>
 										<a href="{% url 'perfil_id' noticia.perfil.id %}"> <img class="foto_perfil_pub" src="{{ noticia.perfil.foto_perfil.url }}"></a>
 										<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>
+										<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
 									</div>
 									<div class="comentarios">
-										<i href="{% url 'me_gusta' noticia.foto.id noticia.perfil.id %}" class="material-icons icons_pub right">favorite_border</i>
-										<p class="right count_likes">{{ 'likes' }}</p>
-										{% for comentario in noticias.foto.comentario %}
+										{% for comentario in noticia.foto.comentario %}
 											<a href="{% url 'perfil_id' comentario.perfil.id %}"> <img class="foto_perfil_pub" src="{{ comentario.perfil.foto_perfil.url }}"></a>
 											<a href="{% url 'perfil_id' comentario.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ comentario.user }}</strong></span></a>
 											<span class="fecha_perfil_pub">{{ comentario.foto.created }}</span>
