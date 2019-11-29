@@ -33,8 +33,25 @@
 									</div>
 									<div class="comentarios">
 										{% for comentario in historia.foto.comentario %}
-										
+
 										{% endfor %}
+										<form class="col s12" method="POST" action="{% url 'edit_post' %}">
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <label for="titulo">Comentario</label>
+                          <input placeholder="Escribir.." name="titulo" value="{{ foto.titulo }}" id="titulo" type="text" class="validate">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s6">
+                          <div class="center">
+                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
+                    </form>
 									</div>
 								</div>
 					    </div>
