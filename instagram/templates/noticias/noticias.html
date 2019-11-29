@@ -32,15 +32,16 @@
 										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ historia.perfil.user }}</strong></span></a>
 									</div>
 									<div class="comentarios">
-										{% for comentario in historia.foto.comentario %}
 
+										{% for comentario in historia.comentarios %}
+											<h1>{{comentario.descripcion}}</h1>
 										{% endfor %}
-										<form class="col s12" method="POST" action="{% url 'edit_post' %}">
+										<form class="col s12" method="POST" action="{% url 'comentario' historia.id historia.perfil.id %}">
                       {% csrf_token %}
                       <div class="row">
                         <div class="input-field col s12">
                           <label for="titulo">Comentario</label>
-                          <input placeholder="Escribir.." name="titulo" value="{{ foto.titulo }}" id="titulo" type="text" class="validate">
+                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
                         </div>
                       </div>
                       <div class="row">

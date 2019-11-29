@@ -3,22 +3,20 @@ from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from noticias.models import Noticia
-from perfiles.models import Like, Foto, Perfil
+from perfiles.models import Like, Foto, Perfil, Comentario
 from django.db.models import Count
 
 
 
 @login_required
 def listar_noticias(request):
-	#noticias = Noticia.objects.all().annotate(cuenta_likes = Count('foto__id')).order_by('-created')
 	noticias = Noticia.objects.all().order_by('-created')
-	likes = Like.objects.all().annotate(foto_count = Count('foto'))
 
 	today = timezone.now()
 	yesterday = today - timedelta(days=1)
 	historias = Foto.objects.all().filter(is_historia=True, created__range=[yesterday, today]).order_by('-created')
 
-	return render(request, 'noticias/noticias.html', {'noticias':noticias, 'historias':historias, 'likes':likes})
+	return render(request, 'noticias/noticias.html', {'noticias':noticias, 'historias':historias})
 
 @login_required
 def me_gusta(request, foto_id=None, perfil_id=None):
@@ -35,5 +33,21 @@ def me_gusta(request, foto_id=None, perfil_id=None):
 			like = Like(perfil=perfil,
 						foto=foto,)
 			like.save(force_insert=True)
+
+	return redirect('noticias')
+
+@login_required
+def add_comment(request, foto_id=None, perfil_id=None):
+	if foto_id and perfil_id:
+		if request.method == 'POST':
+			perfil = Perfil.objects.get(id=perfil_id)
+			foto = Foto.objects.get(id=foto_id)
+
+			if request.POST['comentario']:
+				cometario = request.POST['comentario']
+				coment = Comentario(perfil=perfil,
+							foto=foto, 
+							descripcion=cometario,)
+				coment.save(force_insert=True)
 
 	return redirect('noticias')

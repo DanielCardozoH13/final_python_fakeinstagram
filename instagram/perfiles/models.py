@@ -47,6 +47,12 @@ class Foto(models.Model):
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
 
+	@property
+	def comentarios(self):
+		print("entro al modelo")
+		comentarios = Comentario.objects.all().filter(foto_id=self.id)
+		return comentarios
+
 class Comentario(models.Model):
 	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
 	foto = models.ForeignKey(Foto, on_delete=models.CASCADE, blank=True, null=True)

@@ -21,5 +21,6 @@ urlpatterns = [
     path('perfiles/edit_post', perfiles_views.edit_post, name='edit_post'),
     path('perfiles/delete_post/<int:post_id>', perfiles_views.delete_post, name='delete_post'),
     path('noticias/me_gusta/<int:foto_id>/<int:perfil_id>', noticias_views.me_gusta, name='me_gusta'),
+    path('noticias/comentario/<int:foto_id>/<int:perfil_id>', noticias_views.add_comment, name='comentario'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
