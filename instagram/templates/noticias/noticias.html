@@ -29,7 +29,7 @@
 								<div class="right col s12 m5">
 									<div class="col s12">
 										{% if request.user.id == historia_slider.perfil.user.id %}
-											<a href="{% url 'delete_post' historia_slider.id %} /'noticias'"><i  class="material-icons right">delete</i></a>
+											<a href="{% url 'delete_noticia' historia_slider.id %}"><i  class="material-icons right">delete</i></a>
 										{% endif %}
 										<i href="" class="material-icons icons_pub right"><a href="{% url 'me_gusta' historia_slider.id historia_slider.perfil.id %}">{% if historia_slider.liked_foto == 1 %}favorite{% else %}favorite_border{% endif %}</a></i>
 										<p class="right count_likes">{% if historia_slider.likes_foto > 0 %}{{ historia_slider.likes_foto}}{% endif %}</p>

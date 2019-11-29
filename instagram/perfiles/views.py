@@ -140,11 +140,19 @@ def delete_post(request, post_id = None, pagina = 'perfil'):
 	template_name='perfiles/perfil.html'
 	user = User.objects.get(username=request.user)
 	perfil = Perfil.objects.get(user=user.id)
-	print("llego a delete")
+
 	if post_id:
 		Foto.objects.get(id=post_id).delete()
-
-	if pagina == 'perfil':
-		return redirect('perfil')
-	elif pagina == 'noticias':
-		return redirect('noticias')
+	
+	return redirect('perfil')
+	
+@login_required
+def delete_historia(request, post_id = None, pagina = 'perfil'):
+	template_name='perfiles/perfil.html'
+	user = User.objects.get(username=request.user)
+	perfil = Perfil.objects.get(user=user.id)
+	
+	if post_id:
+		Foto.objects.get(id=post_id).delete()
+	
+	return redirect('noticias')
