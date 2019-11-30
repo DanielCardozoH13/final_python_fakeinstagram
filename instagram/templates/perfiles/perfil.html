@@ -23,7 +23,13 @@
             <h5>
               @{{ dato.user.username }}
               {% if dato.user.id != request.user.id %}
-                <a href="{% url 'seguir' dato.id %}" class="btn btn-danger mt-2">seguir</a>
+                <a href="{% url 'seguir' dato.id %}" class="btn btn-danger mt-2">
+                  {% if es_seguido > 0%}
+                  No Seguir
+                  {% else %}
+                  seguir
+                  {% endif %}
+                </a>
               {% endif %}
                 <a href="{% url 'update_profile' %}" class="activator material-icons right">settings</a></span>
             </h5>
@@ -31,7 +37,7 @@
             <p>
             <strong>{{cant_fotos}}</strong> publicaciones
             <strong class="elementos_perfil">{{dato.seguidos.count }}</strong> seguidos
-            <strong class="elementos_perfil">{{dato.seguidores.count }}</strong> seguidores
+            <strong class="elementos_perfil">{{dato.seguidores.count}}</strong> seguidores
             </p>
 
             
@@ -50,59 +56,60 @@
 
 
   </div>
+  {% if es_seguido > 0%}
+    <div class="row galeria col s12 m10 offset-m1">
+        {% for foto in fotos %}
+          {% if foto.is_historia == 0 %}
+            <div class="col s12 m4">
+              <div id="publicacion" class="card ">
+                <div class="card-content card_content_title grey-text text-darken-4">
+                  <i class="activator material-icons right">more_vert</i>
+                </div>
 
-  <div class="row galeria col s12 m10 offset-m1">
-      {% for foto in fotos %}
-        {% if foto.is_historia == 0 %}
-          <div class="col s12 m4">
-            <div id="publicacion" class="card ">
-              <div class="card-content card_content_title grey-text text-darken-4">
-                <i class="activator material-icons right">more_vert</i>
-              </div>
+        				<div class="card-image waves-effect waves-block waves-light perfil_publicacion">
+        					<a href="#">
+        						<img  class="materialboxed foto_square" src="{{ foto.foto.url }}">
+        					</a>
+        				</div>
 
-      				<div class="card-image waves-effect waves-block waves-light perfil_publicacion">
-      					<a href="#">
-      						<img  class="materialboxed foto_square" src="{{ foto.foto.url }}">
-      					</a>
-      				</div>
-
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{foto.titulo}} <i class="material-icons right">close</i></span><br><br>
-                <div class="row">
-                    <form class="col s12" method="POST" action="{% url 'edit_post' %}">
-                      {% csrf_token %}
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <label for="titulo">Titulo</label>
-                          <input placeholder="Titulo" name="titulo" value="{{ foto.titulo }}" id="titulo" type="text" class="validate">
-                        </div>
-                        <div class="input-field col s12">
-                          <label for="descripcion">Descripción</label>
-                          <input id="descripcion" name="descripcion" type="text" value="{{ foto.descripcion }}" class="validate">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col s6">
-                          <div class="center">
-                            <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar</button>
+                <div class="card-reveal">
+                  <span class="card-title grey-text text-darken-4">{{foto.titulo}} <i class="material-icons right">close</i></span><br><br>
+                  <div class="row">
+                      <form class="col s12" method="POST" action="{% url 'edit_post' %}">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <label for="titulo">Titulo</label>
+                            <input placeholder="Titulo" name="titulo" value="{{ foto.titulo }}" id="titulo" type="text" class="validate">
+                          </div>
+                          <div class="input-field col s12">
+                            <label for="descripcion">Descripción</label>
+                            <input id="descripcion" name="descripcion" type="text" value="{{ foto.descripcion }}" class="validate">
                           </div>
                         </div>
-                        <div class="col s6">
-                          <div class="center">
-                            <a href="{% url 'delete_post' foto.id %}" class="btn btn-danger btn-block mt-5">Eliminar</a>
+                        <div class="row">
+                          <div class="col s6">
+                            <div class="center">
+                              <button type="submit" class="btn btn-primary btn-block mt-5">Actualizar</button>
+                            </div>
+                          </div>
+                          <div class="col s6">
+                            <div class="center">
+                              <a href="{% url 'delete_post' foto.id %}" class="btn btn-danger btn-block mt-5">Eliminar</a>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
-                    </form>
-                  </div>
+                        <input type="hidden" name="foto_id" value="{{ foto.id }}">
+                      </form>
+                    </div>
+                </div>
               </div>
             </div>
-          </div>
-        {% endif %}
-      {% endfor %}
-      <!-- {% for foto in fotos %}
-        <img onclick="window.open(this.src)" class="col s12 m4 materialboxed" src="{{ foto.foto.url }}">
-      {% endfor %} -->
-  </div>
+          {% endif %}
+        {% endfor %}
+        <!-- {% for foto in fotos %}
+          <img onclick="window.open(this.src)" class="col s12 m4 materialboxed" src="{{ foto.foto.url }}">
+        {% endfor %} -->
+    </div>
+  {% endif %}
 {% endblock %}

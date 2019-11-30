@@ -15,23 +15,39 @@ def logout_view(request):
 
 @login_required
 def perfil_view(request, perfil_id = None):
+	# user = User.objects.get(username=request.user)
+	perfil_usuario_en_session = Perfil.objects.filter(user=request.user.id)
+	id_perfil_en_session = perfil_usuario_en_session[0]
+
 	if perfil_id:
 		perfil = Perfil.objects.all().filter(id=perfil_id)
 	else:
-		user = User.objects.get(username=request.user)
-		# perfil = Perfil.objects.filter(user=user.id).values()
-		perfil = Perfil.objects.all().filter(user=user.id)
+		perfil = perfil_usuario_en_session
 
 	if perfil[0].foto_perfil:
 		foto_perfil = perfil[0].foto_perfil.url
 	else:
 		foto_perfil=""
 
+	print(perfil[0].user.id)
+	print(request.user.id)
+
+	if perfil[0].user.id == request.user.id:
+		es_seguido=1
+	else:
+		es_seguido = Seguidores.objects.filter(seguido=perfil[0].id, seguidor=id_perfil_en_session.id).count()
+	
+
 	fotos = Foto.objects.all().filter(perfil=perfil[0].id).order_by('-created')
 	cant_fotos = Foto.objects.filter(is_historia=False, perfil=perfil[0].id).count()
 
 
-	return render(request, 'perfiles/perfil.html', {'perfil':perfil, 'foto_perfil':foto_perfil, 'fotos':fotos, 'cant_fotos':cant_fotos})
+	return render(request, 'perfiles/perfil.html', {'perfil':perfil,
+													 'foto_perfil':foto_perfil,
+													 'fotos':fotos, 
+													 'cant_fotos':cant_fotos,
+													 'id_perfil_en_session': id_perfil_en_session,
+													 'es_seguido':es_seguido})
 
 def logup_view(request):
 	if request.method == 'POST':

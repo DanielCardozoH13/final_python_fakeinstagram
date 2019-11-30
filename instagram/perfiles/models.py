@@ -1,6 +1,9 @@
 from django.db import models
+from django import template
 
 from django.contrib.auth.models import User
+
+register = template.Library()
 
 class Perfil(models.Model):
 	SEXO_STATUS = (
@@ -43,6 +46,8 @@ class Perfil(models.Model):
 	def seguidos(self):
 		seguidos = Seguidores.objects.filter(seguidor=self.id)
 		return seguidos
+
+	
 
 
 
