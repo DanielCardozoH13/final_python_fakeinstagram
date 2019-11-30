@@ -108,7 +108,7 @@
 										<a href="{% url 'perfil_id' noticia.perfil.id %}"><span class="nombre_perfil_pub"><strong>{{ noticia.user }}</strong></span></a>
 										<span class="fecha_perfil_pub">{{ noticia.foto.created }}</span>
 									</div>
-									<div class="comentarios">
+									<div class="comentarios_noticia">
 										{% for comentario in noticia.comentarios %}
 											<div class="col s12">
 												<div class="left">
@@ -117,22 +117,22 @@
 												</div>
 											</div>
 										{% endfor %}
-										<form class="col s12" method="POST" action="{% url 'comentario' noticia.id noticia.perfil.id %}">
-                      {% csrf_token %}
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col s6">
-                          <div class="center">
-                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
-                    </form>
+										<form class="col s12" method="POST" action="{% url 'comentario' noticia.foto.id noticia.perfil.id %}">
+					                      {% csrf_token %}
+					                      <div class="row">
+					                        <div class="input-field col s12">
+					                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
+					                        </div>
+					                      </div>
+					                      <div class="row">
+					                        <div class="col s6">
+					                          <div class="center">
+					                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
+					                          </div>
+					                        </div>
+					                      </div>
+					                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
+					                    </form>
 									</div>
 								</div>
 							</div>

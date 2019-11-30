@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from perfiles.models import Perfil, Foto, Like
+from perfiles.models import Perfil, Foto, Like, Comentario
 from django.db.models import Count
 
 
@@ -25,5 +25,9 @@ class Noticia(models.Model):
 		liked = Like.objects.filter(foto_id=self.foto, perfil_id = self.perfil).count()
 		return liked
 	
+	@property
+	def comentarios(self):
+		comentarios = Comentario.objects.filter(foto_id=self.foto.id)
+		return comentarios
 	
 	
