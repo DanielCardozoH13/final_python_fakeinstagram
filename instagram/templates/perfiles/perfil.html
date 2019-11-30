@@ -10,7 +10,7 @@
     <div class="col s12 m8 offset-m2">
       <div id="perfil" class="">
         <div id="perfil_foto" class="perfil_usuario col s2">
-					{% if foto_perfil %}
+					{% if foto_perfil != None %}
 						<img class="perfil_foto" src="{{ foto_perfil }}">
 		      {% else %}
 						<img class="perfil_foto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_Bf0-x44hsGqqcQwrTcNeLUSnYjlDuoql-hQHydDdBwxeCT2">
@@ -43,9 +43,13 @@
             
             <p>
               <strong>{{ user.get_full_name }} </strong><br>
-              <span>{{ dato.sitio_web }}</span>
+              {% if dato.sitio_web != None %}
+                <span>{{ dato.sitio_web }}</span>
+              {% endif %}
             </p>
-            <p>{{ dato.biografia }}</p>
+            {% if dato.biografia != None %}
+              <p>{{ dato.biografia }}</p>
+            {% endif %}
             
 
           </span>

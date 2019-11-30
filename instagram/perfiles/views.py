@@ -24,10 +24,14 @@ def perfil_view(request, perfil_id = None):
 	else:
 		perfil = perfil_usuario_en_session
 
-	if perfil[0].foto_perfil:
+	try:
 		foto_perfil = perfil[0].foto_perfil.url
-	else:
-		foto_perfil=""
+	except:
+		foto_perfil=None
+	# if perfil[0].foto_perfil:
+	# 	foto_perfil = perfil[0].foto_perfil.url
+	# else:
+	# 	foto_perfil=""
 
 	if perfil[0].user.id == request.user.id:
 		es_seguido=1

@@ -20,9 +20,7 @@ class Perfil(models.Model):
 	modified = models.DateTimeField(auto_now=True, blank=True, null = True)
 	foto_perfil = models.ImageField(upload_to='perfiles/fotos',
 		blank=True,
-		null=True,
-		default='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_Bf0-x44hsGqqcQwrTcNeLUSnYjlDuoql-hQHydDdBwxeCT2'
-		)
+		null=True)
 	seguidores = models.ManyToManyField('self', through='Seguidores',
                                       symmetrical=False)
 
