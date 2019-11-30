@@ -29,9 +29,6 @@ def perfil_view(request, perfil_id = None):
 	else:
 		foto_perfil=""
 
-	print(perfil[0].user.id)
-	print(request.user.id)
-
 	if perfil[0].user.id == request.user.id:
 		es_seguido=1
 	else:

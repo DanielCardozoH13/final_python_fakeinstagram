@@ -33,37 +33,37 @@
 								</div>
 								<div class="right col s12 m5">
 									<div class="col s12">
-										<a href="{% url 'perfil_id' historia.perfil.id %}"> <img class="foto_perfil_historia" src="{{ historia.perfil.foto_perfil.url }}"></a>
+										<a href="{% url 'perfil_id' historia_slider.perfil.id %}"> <img class="foto_perfil_historia" src="{{ historia_slider.perfil.foto_perfil.url }}"></a>
 									</div>
 									<div class="col s12">
-										<a href="{% url 'perfil_id' historia.perfil.id %}"><span class="nombre_perfil_historia"><strong>{{ historia.perfil.user }}</strong></span></a>
+										<a href="{% url 'perfil_id' historia_slider.perfil.id %}"><span class="nombre_perfil_historia"><strong>{{ historia_slider.perfil.user }}</strong></span></a>
 										<br><br>
 									</div>
 									<div class="comentarios">
-										{% for comentario in historia.comentarios %}
+										{% for comentario in historia_slider.comentarios %}
 											<div class="col s12">
 												<div class="left">
-													<a href="{% url 'perfil_id' historia.perfil.id %}"><strong>{{ historia.perfil.user }}</strong></a>
+													<a href="{% url 'perfil_id' historia_slider.perfil.id %}"><strong>{{ historia_slider.perfil.user }}</strong></a>
 													{{comentario.descripcion}}
 												</div>
 											</div>
 										{% endfor %}
-										<form class="col s12" method="POST" action="{% url 'comentario' historia.id historia.perfil.id %}">
-                      {% csrf_token %}
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col s6">
-                          <div class="center">
-                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
-                          </div>
-                        </div>
-                      </div>
-                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
-                    </form>
+										<form class="col s12" method="POST" action="{% url 'comentario' historia_slider.id historia_slider.perfil.id %}">
+					                      {% csrf_token %}
+					                      <div class="row">
+					                        <div class="input-field col s12">
+					                          <input placeholder="Escribir.." name="comentario" value="" id="titulo" type="text" class="validate">
+					                        </div>
+					                      </div>
+					                      <div class="row">
+					                        <div class="col s6">
+					                          <div class="center">
+					                            <button type="submit" class="btn btn-primary btn-block mt-5">Enviar</button>
+					                          </div>
+					                        </div>
+					                      </div>
+					                      <input type="hidden" name="foto_id" value="{{ foto.id }}">
+					                    </form>
 									</div>
 								</div>
 					    </div>

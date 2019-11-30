@@ -49,9 +49,6 @@ class Perfil(models.Model):
 
 	
 
-
-
-
 class Foto(models.Model):
 	perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, blank=True, null=True)
 	titulo = models.TextField(max_length=250, blank=False, null=True)
